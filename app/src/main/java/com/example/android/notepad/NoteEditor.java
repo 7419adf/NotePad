@@ -453,6 +453,10 @@ public class NoteEditor extends Activity {
             cancelNote();
             break;
 
+            //导出笔记选项
+            case R.id.menu_output:
+                outputNote();
+                break;
             case R.id.font_10:
 
                 mText.setTextSize(20);
@@ -489,7 +493,12 @@ public class NoteEditor extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    //跳转导出笔记的activity，将uri信息传到新的activity
+    private final void outputNote() {
+        Intent intent = new Intent(null,mUri);
+        intent.setClass(NoteEditor.this,OutputText.class);
+        NoteEditor.this.startActivity(intent);
+    }
 //BEGIN_INCLUDE(paste)
     /**
      * A helper method that replaces the note's data with the contents of the clipboard.
